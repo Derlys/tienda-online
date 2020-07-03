@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ form: FormGroup = new FormGroup({
   username: new FormControl(''),
   password: new FormControl('')
 });
-constructor() { }
+constructor( private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +22,12 @@ constructor() { }
   submit() {
   if(this.form.valid) {
     console.log('submit', this.form.value);
+    this.validateLogin(this.form.value)
+  }
+  }
+  private validateLogin (user: User){
+  if (user.username === 'admin' && user.password === 'admin'){
+    this.router.navigate(['']);
   }
   }
 
