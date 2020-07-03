@@ -28,6 +28,8 @@ constructor( private router: Router) { }
   private validateLogin (user: User){
   if (user.username === 'admin' && user.password === 'admin'){
     this.router.navigate(['']);
+  } else {
+    console.error('Invalid credentials');
   }
   }
 
